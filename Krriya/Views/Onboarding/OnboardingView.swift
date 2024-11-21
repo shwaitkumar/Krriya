@@ -45,6 +45,7 @@ struct OnboardingView: View {
     @State private var showNextButton: Bool = false
     @State private var showBackButton: Bool = false
     
+    /* Delete this to comment below array for testing -> */
     private let onboardingContent: [OnboardingCardItem] = [
         OnboardingCardItem(
             id: 1,
@@ -137,11 +138,12 @@ struct OnboardingView: View {
             fact: nil
         )
     ]
-    
-    // Use for testing:
-    //    private let onboardingContent: [OnboardingCardItem] = [
-    //        OnboardingCardItem(id: 2, title: "Start with a Goal", subtitle: nil, body: "Krriya focuses on one goal at a time. This isn’t about challenges or deadlines—it’s about building habits that align with your priorities.\nYour goal is your focus, and it can be as small or as big as you want. Break it into manageable daily tasks to make progress every single day.", example: "Goal: “Become healthier.\nDaily Task: Drink 8 glasses of water, take a 20-minute walk.", quote: "Small steps lead to big changes.", fact: nil)
-    //    ]
+
+    /*
+    private let onboardingContent: [OnboardingCardItem] = [
+        OnboardingCardItem(id: 2, title: "Start with a Goal", subtitle: nil, body: "Krriya focuses on one goal at a time. This isn’t about challenges or deadlines—it’s about building habits that align with your priorities.\nYour goal is your focus, and it can be as small or as big as you want. Break it into manageable daily tasks to make progress every single day.", example: "Goal: “Become healthier.\nDaily Task: Drink 8 glasses of water, take a 20-minute walk.", quote: "Small steps lead to big changes.", fact: nil)
+    ]
+     */
     
     private let welcomeScreenContent: [(symbol: String, title: String, text: String)] = [
         ("flag", "Define Your Mission", "Set meaningful goals and map out your vision."),
@@ -411,36 +413,20 @@ struct OnboardingView: View {
                     OnboardingTourCardView(isNextStepAvailable: $isNextStepAvailable, item: currentCardContent, colorCombo: selectedColorCombo)
                         .onChange(of: isNextStepAvailable, {
                             // Show Next Button or Back Button(Based on Id)
-                                if currentCardContent.id != 2 { // No need to hide top left squares as user wont be allowed to go back
-                                    isAnimatingLeftToRight.toggle()
+                            if currentCardContent.id != 2 { // No need to hide top left squares as user wont be allowed to go back
+                                isAnimatingLeftToRight.toggle()
+                            }
+                            isAnimatingRightToLeft.toggle()
+                            
+                            withAnimation(.easeIn(duration: 0.5).delay(0.5)) {
+                                if currentCardContent.id != 2 {
+                                    showBackButton.toggle()
                                 }
-                                isAnimatingRightToLeft.toggle()
-                                
-                                withAnimation(.easeIn(duration: 0.5).delay(0.5)) {
-                                    if currentCardContent.id != 2 {
-                                        showBackButton.toggle()
-                                    }
-                                    showNextButton.toggle()
-                                }
+                                showNextButton.toggle()
+                            }
                         })
                 }
             }
-            
-            // Use for Testing
-            //            if let currentCardContent = currentCardContent {
-            //                OnboardingTourCardView(isNextStepAvailable: $isNextStepAvailable, item: currentCardContent, colorCombo: selectedColorCombo)
-            //                    .onChange(of: isNextStepAvailable, {
-            //                        // Show Next Button
-            //                        withAnimation(.easeOut(duration: 0.5)) {
-            //                            isAnimatingLeftToRight.toggle()
-            //                            isAnimatingRightToLeft.toggle()
-            //
-            //                            withAnimation(.easeIn(duration: 0.5).delay(0.5)) {
-            //                                showNextButton = true
-            //                            }
-            //                        }
-            //                    })
-            //            }
         }
         //: ZSTACK
         .padding()
@@ -544,7 +530,7 @@ struct OnboardingView: View {
         guard let currentCardContent = currentCardContent else {
             return false
         }
-
+        
         if let idx = onboardingContent.firstIndex(where: { $0.id == currentCardContent.id }) {
             if idx > 0 {
                 self.currentCardContent = onboardingContent[idx - 1]
@@ -553,7 +539,7 @@ struct OnboardingView: View {
                 return false // Already at the first card
             }
         }
-
+        
         return false // Current card content not found
     }
 }
