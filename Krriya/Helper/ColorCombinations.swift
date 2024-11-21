@@ -60,10 +60,10 @@ class ColorCombinations: ObservableObject {
                 secondaryColor: Color(hex: "#fbf3eb"), // Soft Linen
                 borderColor: Color(hex: "#FDFAED"), // Whisper White
                 titleColor: Color(hex: "#CC3333"), // Vermilion Flame
-                descriptionColor: Color(hex: "#D2B48C"), // Sandy Beige
+                descriptionColor: Color(hex: "#C04657"), // Rasp Berry
                 extraColor: Color(hex: "#CC3333"), // Vermilion Flame
-                primaryGradientCombo: [Color(hex: "#CC3333"), Color(hex: "#D77A61")], // Vermilion Flame to Coral Glow
-                secondaryGradientCombo: [Color(hex: "#D2B48C"), Color(hex: "#FFA07A")] // Sandy Beige to Blush Salmon
+                primaryGradientCombo: [Color(hex: "#C04657"), Color(hex: "#D77A61")], // Vermilion Flame to Coral Glow
+                secondaryGradientCombo: [Color(hex: "#C04657"), Color(hex: "#FFA07A")] // Rasp Berry to Blush Salmon
             ),
             ColorCombination(
                 title: .goldenBlush,
