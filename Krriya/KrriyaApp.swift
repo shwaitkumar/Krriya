@@ -14,7 +14,7 @@ struct KrriyaApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
                 .onAppear {
                     print("Onboarding Status: ", isOnboardingComplete ? "Complete" : "Incomplete")
                     if !isOnboardingComplete {

@@ -44,6 +44,7 @@ struct OnboardingView: View {
     @State private var showHowItWorksButton: Bool = false
     @State private var showNextButton: Bool = false
     @State private var showBackButton: Bool = false
+    @State private var isLastCard: Bool = false
     
     /* Delete this to comment below array for testing -> */
     private let onboardingContent: [OnboardingCardItem] = [
@@ -196,7 +197,13 @@ struct OnboardingView: View {
                             let canMoveBackward = showPreviousCard() // If true, mans content has been changed to previous one otherwise it has returned same content
                             if canMoveBackward {
                                 showBackButton.toggle()
-                                showNextButton.toggle() // Hide Current Next Button
+                                // Hide Finish button for last card otherwise next button for other cards
+                                if isLastCard {
+                                    isLastCard.toggle()
+                                }
+                                else {
+                                    showNextButton.toggle()
+                                }
                                 
                                 UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                                 withAnimation(.easeInOut(duration: 0.5)) {
@@ -320,6 +327,27 @@ struct OnboardingView: View {
                         .animation(.easeIn(duration: 1.0), value: showNextButton)
                         .animation(.easeInOut(duration: 0.5), value: selectedColorCombo)
                     }
+                    else if isLastCard {
+                        Button(action: {
+                            UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+                            withAnimation(.easeInOut(duration: 0.5)) {
+                                isOnboardingComplete.toggle()
+                                dismiss()
+                            }
+                        }) {
+                            Text("Finish")
+                        }
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .frame(maxHeight: UITraitCollection.current.horizontalSizeClass == .regular ? 32 : 24, alignment: .center)
+                        .padding()
+                        .background(selectedColorCombo.primaryColor)
+                        .foregroundStyle(selectedColorCombo.titleColor)
+                        .opacity(isLastCard ? 1 : 0)
+                        .cornerRadius(10)
+                        .animation(.easeIn(duration: 1.0), value: isLastCard)
+                        .animation(.easeInOut(duration: 0.5), value: selectedColorCombo)
+                    }
                     else {
                         ThreeSquaresView(selectedColorCombo: selectedColorCombo, isRightToLeft: true, isAnimating: $isAnimatingRightToLeft)
                     }
@@ -423,7 +451,15 @@ struct OnboardingView: View {
                                 if currentCardContent.id != 2 {
                                     showBackButton.toggle()
                                 }
-                                showNextButton.toggle()
+                                
+                                // Show Finish Button for last card otherwise show next button
+                                if currentCardContent.id == 10 {
+                                    isLastCard.toggle()
+                                }
+                                else {
+                                    showNextButton.toggle()
+                                }
+                               
                             }
                         })
                 }
