@@ -139,13 +139,12 @@ struct OnboardingView: View {
             fact: nil
         )
     ]
-//     */
     
-    /*
+/*
     private let onboardingContent: [OnboardingCardItem] = [
         OnboardingCardItem(id: 2, title: "Start with a Goal", subtitle: nil, body: "Krriya focuses on one goal at a time. This isn’t about challenges or deadlines—it’s about building habits that align with your priorities.\nYour goal is your focus, and it can be as small or as big as you want. Break it into manageable daily tasks to make progress every single day.", example: "Goal: “Become healthier.\nDaily Task: Drink 8 glasses of water, take a 20-minute walk.", quote: "Small steps lead to big changes.", fact: nil)
     ]
-     */
+    */
     
     private let welcomeScreenContent: [(symbol: String, title: String, text: String)] = [
         ("flag", "Define Your Mission", "Set meaningful goals and map out your vision."),
