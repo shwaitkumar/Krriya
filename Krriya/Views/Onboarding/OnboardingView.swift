@@ -22,16 +22,16 @@ struct OnboardingView: View {
     @State private var isAnimatingLeftToRight: Bool = false
     @State private var isAnimatingRightToLeft: Bool = false
     // Color Combo
-    @State private var selectedColorCombo: ColorCombination = ColorCombination(
-        title: .autumnBlush,
-        primaryColor: Color(hex: "#f6e3d1"), // Almond Blush
-        secondaryColor: Color(hex: "#fbf3eb"), // Soft Linen
-        borderColor: Color(hex: "#FDFAED"), // Whisper White
-        titleColor: Color(hex: "#CC3333"), // Vermilion Flame
-        descriptionColor: Color(hex: "#D2B48C"), // Sandy Beige
-        extraColor: Color(hex: "#CC3333"), // Vermilion Flame
-        primaryGradientCombo: [Color(hex: "#CC3333"), Color(hex: "#D77A61")], // Vermilion Flame to Coral Glow
-        secondaryGradientCombo: [Color(hex: "#D2B48C"), Color(hex: "#FFA07A")] // Sandy Beige to Blush Salmon
+    @State private var selectedColorCombo: ColorCombination =  ColorCombination(
+        title: .springBlossom,
+        primaryColor: Color(hex: "#F0F8FF"), // Alice Blue
+        secondaryColor: Color(hex: "#FFF7F0"), // Blush Frost
+        borderColor: Color(hex: "#FFF0F8"), // Petal Whisper
+        titleColor: Color(hex: "#F19CBB"), // Rose Petal Pink
+        descriptionColor: Color(hex: "#9966CC"), // Amethyst Bloom
+        extraColor: Color(hex: "#F19CBB"), // Rose Petal Pink
+        primaryGradientCombo: [Color(hex: "#9966CC"), Color(hex: "#F19CBB")], // Amethyst Bloom to Rose Petal Pink
+        secondaryGradientCombo: [Color(hex: "#9966CC"), Color(hex: "#50C878")] // Amethyst Bloom to Spring Emerald
     )
     // Title Text
     @State private var textOffset: CGFloat = 100
@@ -138,7 +138,8 @@ struct OnboardingView: View {
             fact: nil
         )
     ]
-
+//     */
+    
     /*
     private let onboardingContent: [OnboardingCardItem] = [
         OnboardingCardItem(id: 2, title: "Start with a Goal", subtitle: nil, body: "Krriya focuses on one goal at a time. This isn’t about challenges or deadlines—it’s about building habits that align with your priorities.\nYour goal is your focus, and it can be as small or as big as you want. Break it into manageable daily tasks to make progress every single day.", example: "Goal: “Become healthier.\nDaily Task: Drink 8 glasses of water, take a 20-minute walk.", quote: "Small steps lead to big changes.", fact: nil)

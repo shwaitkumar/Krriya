@@ -51,16 +51,16 @@ struct ThreeSquaresView: View {
 #Preview {
     @Previewable @State var isAnimating: Bool = true
     
-    ThreeSquaresView(selectedColorCombo: ColorCombination(
-        title: .autumnBlush,
-        primaryColor: Color(hex: "#f6e3d1"), // Almond Cream
-        secondaryColor: Color(hex: "#fbf3eb"), // Linen White
-        borderColor: Color(hex: "#F3E5AB"), // Coral
-        titleColor: Color(hex: "#CC3333"), // Vermilion Red
-        descriptionColor: Color(hex: "#D2B48C"), // Tan Beige
-        extraColor: Color(hex: "#FFFFFF"), // Pure White
-        primaryGradientCombo: [Color(hex: "#CC3333"), Color(hex: "#D77A61")], // Vermilion Red to Burnt Coral
-        secondaryGradientCombo: [Color(hex: "#D2B48C"), Color(hex: "#FFA07A")] // Tan Beige to Light Salmon
+    ThreeSquaresView(selectedColorCombo:  ColorCombination(
+        title: .springBlossom,
+        primaryColor: Color(hex: "#F0F8FF"), // Alice Blue
+        secondaryColor: Color(hex: "#F8FFF0"), // Mint Frost
+        borderColor: Color(hex: "#FFF0F8"), // Blush Pearl
+        titleColor: Color(hex: "#F19CBB"), // Rose Petal Pink
+        descriptionColor: Color(hex: "#9966CC"), // Amethyst Glow
+        extraColor: Color(hex: "#F19CBB"), // Rose Petal Pink
+        primaryGradientCombo: [Color(hex: "#9966CC"), Color(hex: "#F19CBB")], // Amethyst Glow to Rose Petal Pink
+        secondaryGradientCombo: [Color(hex: "#9966CC"), Color(hex: "#50C878")] // Amethyst Glow to Emerald Mist
     ), isAnimating: $isAnimating
     )
 }

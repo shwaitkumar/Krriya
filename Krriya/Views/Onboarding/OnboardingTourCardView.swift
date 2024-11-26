@@ -168,16 +168,16 @@ struct OnboardingTourCardView: View {
 #Preview {
     @Previewable @State var isNextStepAvailable: Bool = false
     
-    OnboardingTourCardView(isNextStepAvailable: $isNextStepAvailable, item: OnboardingCardItem(id: 2, title: "Start with a Goal", subtitle: nil, body: "Krriya focuses on one goal at a time. This isn’t about challenges or deadlines—it’s about building habits that align with your priorities.\nYour goal is your focus, and it can be as small or as big as you want. Break it into manageable daily tasks to make progress every single day.", example: "Goal: “Become healthier.\nDaily Task: Drink 8 glasses of water, take a 20-minute walk.", quote: "Small steps lead to big changes.", fact: nil), colorCombo: ColorCombination(
-        title: .autumnBlush,
-        primaryColor: Color(hex: "#f6e3d1"), // Almond Blush
-        secondaryColor: Color(hex: "#fbf3eb"), // Soft Linen
-        borderColor: Color(hex: "#FDFAED"), // Whisper White
-        titleColor: Color(hex: "#CC3333"), // Vermilion Flame
-        descriptionColor: Color(hex: "#D2B48C"), // Sandy Beige
-        extraColor: Color(hex: "#CC3333"), // Vermilion Flame
-        primaryGradientCombo: [Color(hex: "#CC3333"), Color(hex: "#D77A61")], // Vermilion Flame to Coral Glow
-        secondaryGradientCombo: [Color(hex: "#D2B48C"), Color(hex: "#FFA07A")] // Sandy Beige to Blush Salmon
+    OnboardingTourCardView(isNextStepAvailable: $isNextStepAvailable, item: OnboardingCardItem(id: 2, title: "Start with a Goal", subtitle: nil, body: "Krriya focuses on one goal at a time. This isn’t about challenges or deadlines—it’s about building habits that align with your priorities.\nYour goal is your focus, and it can be as small or as big as you want. Break it into manageable daily tasks to make progress every single day.", example: "Goal: “Become healthier.\nDaily Task: Drink 8 glasses of water, take a 20-minute walk.", quote: "Small steps lead to big changes.", fact: nil), colorCombo:  ColorCombination(
+        title: .springBlossom,
+        primaryColor: Color(hex: "#F0F8FF"), // Alice Blue
+        secondaryColor: Color(hex: "#F8FFF0"), // Mint Frost
+        borderColor: Color(hex: "#FFF0F8"), // Blush Pearl
+        titleColor: Color(hex: "#F19CBB"), // Rose Petal Pink
+        descriptionColor: Color(hex: "#9966CC"), // Amethyst Glow
+        extraColor: Color(hex: "#F19CBB"), // Rose Petal Pink
+        primaryGradientCombo: [Color(hex: "#9966CC"), Color(hex: "#F19CBB")], // Amethyst Glow to Rose Petal Pink
+        secondaryGradientCombo: [Color(hex: "#9966CC"), Color(hex: "#50C878")] // Amethyst Glow to Emerald Mist
     )
     )
 }
