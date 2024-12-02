@@ -238,5 +238,14 @@ class ColorCombinations: ObservableObject {
     func selectedCombination() -> ColorCombination? {
         return combinations.first(where: { $0.isSelected })
     }
+    
+    // For Swift
+    var defaultCombination: ColorCombination {
+        combinations[1]
+    }
+    
+    func getCombination(for title: String) -> ColorCombination? {
+        combinations.first { $0.title.rawValue == title }
+    }
 }
 

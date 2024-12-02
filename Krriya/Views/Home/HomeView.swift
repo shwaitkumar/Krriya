@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 enum TabItem {
     case home
@@ -13,57 +14,22 @@ enum TabItem {
 }
 
 struct HomeView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Query private var goals: [Goal]
+    
     @State private var selectedTab: TabItem = .home
+    @State private var colorCombination: ColorCombination = ColorCombinations.shared.defaultCombination
     
     var body: some View {
         ZStack {
-            Color.homeBackground
+            colorCombination.secondaryColor
                 .ignoresSafeArea(.all)
             
             VStack {
+                // Tab Selection
                 HStack(spacing: 10) {
-                    // Home Button
-                    Button(action: {
-                        withAnimation(.smooth(duration: 0.3), {
-                            selectedTab = .home
-                        })
-                    }) {
-                        Text("Home")
-                    }
-                    .font(.subheadline)
-                    .fontWeight(.semibold)
-                    .frame(height: UITraitCollection.current.horizontalSizeClass == .regular ? 32 : 24, alignment: .center)
-                    .padding(.horizontal)
-                    .padding(.vertical, 10)
-                    .background(selectedTab == .home ? (UITraitCollection.current.userInterfaceStyle == .dark ? .white.opacity(0.5) : .black.opacity(0.5)) : .clear)
-                    .foregroundStyle(selectedTab == .home ? (UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white) : .black)
-                    .cornerRadius(10)
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(.black, lineWidth: 2)
-                    }
-                    
-                    // Goals Button
-                    Button(action: {
-                        withAnimation(.smooth(duration: 0.3), {
-                            selectedTab = .goals
-                        })
-                    }) {
-                        Text("Goals")
-                    }
-                    .font(.subheadline)
-                    .fontWeight(.semibold)
-                    .frame(height: UITraitCollection.current.horizontalSizeClass == .regular ? 32 : 24, alignment: .center)
-                    .padding(.horizontal)
-                    .padding(.vertical, 10)
-                    .background(selectedTab == .goals ? (UITraitCollection.current.userInterfaceStyle == .dark ? .white.opacity(0.5) : .black.opacity(0.5)) : .clear)
-                    .foregroundStyle(selectedTab == .goals ? (UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white) : .black)
-                    .cornerRadius(10)
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(.black, lineWidth: 2)
-                    }
-                    
+                    HomeTabButton(selectedTab: $selectedTab, icon: "house", title: "Home", tab: .home, colorCombinaton: colorCombination)
+                    HomeTabButton(selectedTab: $selectedTab, icon: "list.bullet.rectangle", title: "Goals", tab: .goals, colorCombinaton: colorCombination)
                     Spacer()
                 } //: HSTACK
                 .padding([.leading, .top, .bottom])
@@ -71,14 +37,70 @@ struct HomeView: View {
                 ZStack {
                     switch selectedTab {
                     case .home:
-                        NoGoalView()
+                        if let currentGoal = goals.first(where: { $0.isCurrent }) {
+                            CurrentGoalView(colorCombination: colorCombination)
+                        } else {
+                            NoGoalView(colorCombination: colorCombination)
+                        }
                     case .goals:
-                        AllGoalEntriesView()
+                        AllGoalEntriesView(colorCombination: colorCombination)
                     }
                 } //: ZSTACK
                 .ignoresSafeArea(edges: .bottom)
             } //: VSTACK
+            .onAppear {
+                updateColorCombination()
+            }
+            .onChange(of: goals, {
+                updateColorCombination()
+            })
         } //: ZSTACK
+    }
+    
+    private func updateColorCombination() {
+        if let currentGoal = goals.first(where: { $0.isCurrent }) {
+            colorCombination = currentGoal.colorCombination
+        } else {
+            colorCombination = ColorCombinations.shared.defaultCombination
+        }
+    }
+}
+
+struct HomeTabButton: View {
+    @Binding var selectedTab: TabItem
+    var icon: String
+    var title: String
+    var tab: TabItem
+    let colorCombinaton: ColorCombination
+    
+    var body: some View {
+        Button(action: {
+            withAnimation(.smooth(duration: 0.3)) {
+                selectedTab = tab
+            }
+        }) {
+            HStack {
+                Image(systemName: selectedTab == tab ? icon + ".fill" : icon)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 24, height: 24)
+                    .symbolEffect(.wiggle, value: selectedTab)
+                
+                Text(title)
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .frame(height: UITraitCollection.current.horizontalSizeClass == .regular ? 32 : 24, alignment: .center)
+            } //: HSTACK
+            .background(selectedTab == tab ? colorCombinaton.primaryColor : colorCombinaton.secondaryColor)
+            .foregroundStyle(colorCombinaton.titleColor)
+            .padding(.horizontal)
+            .padding(.horizontal)
+            .padding(.vertical, 10)
+            .overlay {
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(colorCombinaton.borderColor, lineWidth: selectedTab == tab ? 3 : 2)
+            }
+        }
     }
 }
 
