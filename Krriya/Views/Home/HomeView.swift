@@ -75,6 +75,7 @@ struct HomeTabButton: View {
     
     var body: some View {
         Button(action: {
+            UIImpactFeedbackGenerator(style: .soft).impactOccurred()
             withAnimation(.smooth(duration: 0.3)) {
                 selectedTab = tab
             }

@@ -35,6 +35,7 @@ struct NoGoalView: View {
                 } //: VSTACK
                 
                 Button(action: {
+                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
                     withAnimation {
                         isPresented.toggle()
                     }
@@ -63,6 +64,7 @@ struct NoGoalView: View {
                     AddGoalView()
                         .presentationDetents([.fraction(6)])
                         .presentationCornerRadius(24)
+                        .environmentObject(GoalInput())
                 })
                 
                 Spacer()
