@@ -51,16 +51,6 @@ struct ThreeSquaresView: View {
 #Preview {
     @Previewable @State var isAnimating: Bool = true
     
-    ThreeSquaresView(selectedColorCombo:  ColorCombination(
-        title: .springBlossom,
-        primaryColor: Color(hex: "#F0F8FF"), // Alice Blue
-        secondaryColor: Color(hex: "#F8FFF0"), // Mint Frost
-        borderColor: Color(hex: "#FFF0F8"), // Blush Pearl
-        titleColor: Color(hex: "#F19CBB"), // Rose Petal Pink
-        descriptionColor: Color(hex: "#9966CC"), // Amethyst Glow
-        extraColor: Color(hex: "#F19CBB"), // Rose Petal Pink
-        primaryGradientCombo: [Color(hex: "#9966CC"), Color(hex: "#F19CBB")], // Amethyst Glow to Rose Petal Pink
-        secondaryGradientCombo: [Color(hex: "#9966CC"), Color(hex: "#50C878")] // Amethyst Glow to Emerald Mist
-    ), isAnimating: $isAnimating
+    ThreeSquaresView(selectedColorCombo:  ColorCombinations.shared.defaultCombination, isAnimating: $isAnimating
     )
 }

@@ -22,17 +22,7 @@ struct OnboardingView: View {
     @State private var isAnimatingLeftToRight: Bool = false
     @State private var isAnimatingRightToLeft: Bool = false
     // Color Combo
-    @State private var selectedColorCombo: ColorCombination =  ColorCombination(
-        title: .springBlossom,
-        primaryColor: Color(hex: "#F0F8FF"), // Alice Blue
-        secondaryColor: Color(hex: "#FFF7F0"), // Blush Frost
-        borderColor: Color(hex: "#FFF0F8"), // Petal Whisper
-        titleColor: Color(hex: "#F19CBB"), // Rose Petal Pink
-        descriptionColor: Color(hex: "#9966CC"), // Amethyst Bloom
-        extraColor: Color(hex: "#F19CBB"), // Rose Petal Pink
-        primaryGradientCombo: [Color(hex: "#9966CC"), Color(hex: "#F19CBB")], // Amethyst Bloom to Rose Petal Pink
-        secondaryGradientCombo: [Color(hex: "#9966CC"), Color(hex: "#50C878")] // Amethyst Bloom to Spring Emerald
-    )
+    @State private var selectedColorCombo: ColorCombination =  ColorCombinations.shared.defaultCombination
     // Title Text
     @State private var textOffset: CGFloat = 100
     @State private var textOpacity: Double = 0

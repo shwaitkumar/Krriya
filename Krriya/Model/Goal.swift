@@ -38,9 +38,15 @@ class Goal {
 // Use for creating goal. This is same as Goal but to avoid any coupling issues later with data stored locally, we have decided to use this new model
 class GoalInput: ObservableObject {
     @Published var title: String = ""
+    @Published var planTime: Date? = nil
     @Published var description: String = ""
     @Published var isCurrent: Bool = true
     @Published var colorCombination: ColorCombination = ColorCombinations.shared.defaultCombination
     @Published var createdAt: Date = Date()
     @Published var completedAt: Date? = nil
+
+    // Computed property for default plan time
+    var defaultPlanTime: Date {
+        planTime ?? Calendar.current.date(bySettingHour: 21, minute: 0, second: 0, of: Date())!
+    }
 }

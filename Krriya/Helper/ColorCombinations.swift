@@ -38,6 +38,7 @@ struct ColorCombination: Equatable {
     let secondaryGradientCombo: [Color]
     var isSelected: Bool = false // To check if selected
     var isUsedOnce: Bool = false // To keep track if its already used or not
+    let isLightTitleColor: Bool
 }
 
 class ColorCombinations: ObservableObject {
@@ -55,7 +56,6 @@ class ColorCombinations: ObservableObject {
     // Method to load predefined combinations
     private func loadCombinations() {
         combinations = [
-            // Light
             ColorCombination(
                 title: .autumnBlush,
                 primaryColor: Color(hex: "#FEF4F2"), // Blush Almond
@@ -65,7 +65,8 @@ class ColorCombinations: ObservableObject {
                 descriptionColor: Color(hex: "#F89880"), // Sunset Glow
                 extraColor: Color(hex: "#F89880"), // Autumn Flame
                 primaryGradientCombo: [Color(hex: "#F89880"), Color(hex: "#F880A4")], // Sunset Coral to Rose Dawn
-                secondaryGradientCombo: [Color(hex: "#F89880"), Color(hex: "#80E0F8")] // Sunset Coral to Sky Glow
+                secondaryGradientCombo: [Color(hex: "#F89880"), Color(hex: "#80E0F8")], // Sunset Coral to Sky Glow
+                isLightTitleColor: false
             ),
             ColorCombination(
                 title: .goldenHorizon,
@@ -76,7 +77,8 @@ class ColorCombinations: ObservableObject {
                 descriptionColor: Color(hex: "#757575"), // Twilight Gray
                 extraColor: Color(hex: "#FBD4FD"), // Lavender Sunset
                 primaryGradientCombo: [Color(hex: "#757575"), Color(hex: "#775D6A")], // Smoky Bronze to Antique Mauve
-                secondaryGradientCombo: [Color(hex: "#775D6A"), Color(hex: "#F2828E")] // Antique Mauve to Coral Glow
+                secondaryGradientCombo: [Color(hex: "#775D6A"), Color(hex: "#F2828E")], // Antique Mauve to Coral Glow
+                isLightTitleColor: false
             ),
             ColorCombination(
                 title: .emeraldSerenity,
@@ -87,7 +89,8 @@ class ColorCombinations: ObservableObject {
                 descriptionColor: Color(hex: "#6E9970"), // Sage Whisper
                 extraColor: Color(hex: "#E4E3C1"), // Leafy Gold
                 primaryGradientCombo: [Color(hex: "#4A745E"), Color(hex: "#6E9970")], // Forest Canopy to Sage Whisper
-                secondaryGradientCombo: [Color(hex: "#4A745E"), Color(hex: "#B5A6D1")] // Forest Canopy to Rosewood Mist
+                secondaryGradientCombo: [Color(hex: "#4A745E"), Color(hex: "#B5A6D1")], // Forest Canopy to Rosewood Mist
+                isLightTitleColor: false
             ),
             ColorCombination(
                 title: .mutedMonochrome,
@@ -98,7 +101,8 @@ class ColorCombinations: ObservableObject {
                 descriptionColor: Color(hex: "#777A71"), // Ash Gray
                 extraColor: Color(hex: "#777A71"), // Ash Gray
                 primaryGradientCombo: [Color(hex: "#35393A"), Color(hex: "#181A19")], // Charcoal Shadow to Deep Ash
-                secondaryGradientCombo: [Color(hex: "#35393A"), Color(hex: "#777A71")] // Charcoal Shadow to Ash Gray
+                secondaryGradientCombo: [Color(hex: "#35393A"), Color(hex: "#777A71")], // Charcoal Shadow to Ash Gray
+                isLightTitleColor: false
             ),
             ColorCombination(
                 title: .lavenderTwilight,
@@ -109,9 +113,9 @@ class ColorCombinations: ObservableObject {
                 descriptionColor: Color(hex: "#7851A9"), // Violet Elegance
                 extraColor: Color(hex: "#FFF9F9"), // Misty White
                 primaryGradientCombo: [Color(hex: "#444054"), Color(hex: "#7851A9")], // Deep Twilight to Violet Elegance
-                secondaryGradientCombo: [Color(hex: "#4B0082"), Color(hex: "#9400D3")] // Indigo Glow to Royal Amethyst
+                secondaryGradientCombo: [Color(hex: "#4B0082"), Color(hex: "#9400D3")], // Indigo Glow to Royal Amethyst
+                isLightTitleColor: false
             ),
-            // Dark
             ColorCombination(
                 title: .crimsonElegance,
                 primaryColor: Color(hex: "#722f37"), // Ruby Shadow
@@ -121,7 +125,8 @@ class ColorCombinations: ObservableObject {
                 descriptionColor: Color(hex: "#e5d8c8"), // Pearl Cream
                 extraColor: Color(hex: "#e5d8c8"), // Pearl Cream
                 primaryGradientCombo: [Color(hex: "#e5d8c8"), Color(hex: "#f7e7ce")], // Pearl Cream to Sandstone Glow
-                secondaryGradientCombo: [Color(hex: "#e5d8c8"), Color(hex: "#f0f0f0")] // Pearl Cream to Frosted White
+                secondaryGradientCombo: [Color(hex: "#e5d8c8"), Color(hex: "#f0f0f0")], // Pearl Cream to Frosted White
+                isLightTitleColor: true // Light title color
             ),
             ColorCombination(
                 title: .amberShadows,
@@ -132,42 +137,8 @@ class ColorCombinations: ObservableObject {
                 descriptionColor: Color(hex: "#E1B570"), // Amber Glow
                 extraColor: Color(hex: "#E1B570"), // Amber Glow
                 primaryGradientCombo: [Color(hex: "#E1B570"), Color(hex: "#E7A39A")], // Amber Glow to Sunset Rose
-                secondaryGradientCombo: [Color(hex: "#E1B570"), Color(hex: "#DEE2EB")] // Amber Glow to Misty Cloud
-            ),
-            // Complementary Light
-            ColorCombination(
-                title: .springBlossom,
-                primaryColor: Color(hex: "#F0F8FF"), // Alice Blue
-                secondaryColor: Color(hex: "#FFF7F0"), // Blush Frost
-                borderColor: Color(hex: "#FFF0F8"), // Petal Whisper
-                titleColor: Color(hex: "#F19CBB"), // Rose Petal Pink
-                descriptionColor: Color(hex: "#9966CC"), // Amethyst Bloom
-                extraColor: Color(hex: "#F19CBB"), // Rose Petal Pink
-                primaryGradientCombo: [Color(hex: "#9966CC"), Color(hex: "#F19CBB")], // Amethyst Bloom to Rose Petal Pink
-                secondaryGradientCombo: [Color(hex: "#9966CC"), Color(hex: "#50C878")] // Amethyst Bloom to Spring Emerald
-            ),
-            ColorCombination(
-                title: .mysticSands,
-                primaryColor: Color(hex: "#B2BEB5"), // Soft Sage
-                secondaryColor: Color(hex: "#BEB2BB"), // Lavender Smoke
-                borderColor: Color(hex: "#E8E5DA"), // Whisper Mirage
-                titleColor: Color(hex: "#77567A"), // Dusky Rose
-                descriptionColor: Color(hex: "#77567A"), // Dusky Rose
-                extraColor: Color(hex: "#77567A"), // Dusky Rose Glow
-                primaryGradientCombo: [Color(hex: "#77567A"), Color(hex: "#003153")], // Dusky Rose to Deep Sapphire
-                secondaryGradientCombo: [Color(hex: "#003153"), Color(hex: "#3A5A40")] // Deep Sapphire to Forest Shade
-            ),
-            // Complementary Dark
-            ColorCombination(
-                title: .desertDunes,
-                primaryColor: Color(hex: "#253734"), // Evergreen Sand
-                secondaryColor: Color(hex: "#372528"), // Smoky Earth
-                borderColor: Color(hex: "#EBE9E9"), // Pale Mirage
-                titleColor: Color(hex: "#EBE9E9"), // Desert Glow
-                descriptionColor: Color(hex: "#F4DECB"), // Sun-Kissed Beige
-                extraColor: Color(hex: "#EBE9E9"), // Mirage Gold
-                primaryGradientCombo: [Color(hex: "#EBE9E9"), Color(hex: "#F4DECB")], // Desert Glow to Vanilla Cream
-                secondaryGradientCombo: [Color(hex: "#E6BE8A"), Color(hex: "#F4DECB")] // Sunlit Gold to Vanilla Cream
+                secondaryGradientCombo: [Color(hex: "#E1B570"), Color(hex: "#DEE2EB")], // Amber Glow to Misty Cloud
+                isLightTitleColor: true // Light title color
             )
         ]
         
