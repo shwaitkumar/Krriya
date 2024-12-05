@@ -61,6 +61,10 @@ struct AddGoalView: View {
             .toolbarColorScheme(colorCombination.isLightTitleColor ? .dark : .light, for: .navigationBar)
             .toolbarBackground(colorCombination.primaryColor, for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
+            .onAppear {
+                debugPrint("goal title: ", goal.title)
+                debugPrint("goal plan time: ", goal.planTime)
+            }
         }
     }
 }
