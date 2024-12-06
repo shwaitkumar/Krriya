@@ -212,7 +212,7 @@ class ColorCombinations: ObservableObject {
     
     // For Swift
     var defaultCombination: ColorCombination {
-        combinations[1]
+        combinations[6]
     }
     
     func getCombination(for title: String) -> ColorCombination? {
